@@ -1,7 +1,39 @@
 part of '../home_page.dart';
 
-class HomeHeader extends StatelessWidget {
+class HomeHeader extends StatefulWidget {
   const HomeHeader({Key? key}) : super(key: key);
+
+  @override
+  State<HomeHeader> createState() => _HomeHeaderState();
+}
+
+class _HomeHeaderState extends State<HomeHeader> {
+  late String _localTime;
+  late String _localDate;
+  late String _localHijriyah;
+
+  @override
+  void initState() {
+    _localTime = getTime;
+    _localDate = getTime;
+    _localHijriyah = getHijriyah;
+
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Timer.periodic(const Duration(seconds: 1), (_) {
+        setState(() {
+          _localTime = getTime;
+          _localDate = getDate;
+          _localHijriyah = getHijriyah;
+        });
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -14,6 +46,16 @@ class HomeHeader extends StatelessWidget {
             alignment: Alignment.topCenter,
             child: Material(
               color: primaryColor,
+              child: SizedBox(
+                height: height * 0.6,
+                width: MediaQuery.of(context).size.width,
+              ),
+            ),
+          ),
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Material(
+              color: Colors.white,
               child: SizedBox(
                 height: height * 0.6,
                 width: MediaQuery.of(context).size.width,
@@ -42,28 +84,30 @@ class HomeHeader extends StatelessWidget {
                 children: [
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const [
-                      Text(
-                        'LOREM IPSUM',
-                        style: TextStyle(
-                          color: primaryColor,
-                          fontSize: 18,
-                          fontWeight: FontWeight.w900,
+                    children: [
+                      const FittedBox(
+                        child: Text(
+                          'LOREM IPSUM',
+                          style: TextStyle(
+                            color: primaryColor,
+                            fontSize: 18,
+                            fontWeight: FontWeight.w900,
+                          ),
                         ),
                       ),
-                      Spacer(),
+                      const Spacer(),
                       Text(
-                        '23:00',
-                        style: TextStyle(
+                        _localTime,
+                        style: const TextStyle(
                           color: primaryColor,
                           fontSize: 28,
                           fontWeight: FontWeight.w900,
                         ),
                       ),
-                      Spacer(),
-                      Text('Senin, 23 juli 2022'),
-                      SizedBox(height: 4),
-                      Text('09 syawal 1443 Hijriah'),
+                      const Spacer(),
+                      FittedBox(child: Text(_localDate)),
+                      const SizedBox(height: 4),
+                      FittedBox(child: Text('$_localHijriyah Hijriah')),
                     ],
                   ),
                   Image.asset(

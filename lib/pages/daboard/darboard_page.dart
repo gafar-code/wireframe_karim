@@ -5,6 +5,8 @@ import 'package:wireframe_karim/pages/menu_satu/menu_satu.dart';
 import 'package:wireframe_karim/pages/menu_tiga/menu_tiga.dart';
 import 'package:wireframe_karim/widgets/custom_bottom_bar.dart';
 
+import '../../theme.dart';
+
 class DasboardPage extends StatefulWidget {
   const DasboardPage({Key? key}) : super(key: key);
 
@@ -17,6 +19,7 @@ class _DasboardPageState extends State<DasboardPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: selectedIndex == 0 ? primaryColor : Colors.white,
       body: SafeArea(
         child: Stack(
           children: [

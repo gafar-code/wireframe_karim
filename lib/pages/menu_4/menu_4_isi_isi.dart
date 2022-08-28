@@ -8,12 +8,6 @@ class Menu4IsiIsi extends StatefulWidget {
 }
 
 class _Menu4IsiIsiState extends State<Menu4IsiIsi> {
-  final List<String> contents = [
-    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since",
-    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since",
-    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since",
-    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since",
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +16,7 @@ class _Menu4IsiIsiState extends State<Menu4IsiIsi> {
           child: Column(
         children: [
           CustomAppBar(title: 'Materi Menu 4 Topic', onTap: () => back(context)),
-          Expanded(child: CustomMateriScreen(contents: contents)),
+          Expanded(child: CustomMateriScreen(contents: menuSatuContentMateri1)),
         ],
       )),
     );

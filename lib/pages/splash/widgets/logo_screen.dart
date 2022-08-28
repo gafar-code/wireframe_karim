@@ -11,8 +11,13 @@ class _SplashPageLogoState extends State<SplashPageLogo> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      Future.delayed(const Duration(seconds: 3)).then((value) => Navigator.pushReplacement(context, MaterialPageRoute(builder: ((context) => const SplashPage()))));
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      final prefs = await SharedPreferences.getInstance();
+      final bool repeat = prefs.getBool('repeat') ?? false;
+      log('$repeat');
+      Future.delayed(const Duration(seconds: 3)).then((_) {
+        goReplace(context, repeat ? const DasboardPage() : const SplashPage());
+      });
     });
   }
 

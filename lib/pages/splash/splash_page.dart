@@ -1,6 +1,8 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wireframe_karim/constant.dart';
 import 'package:wireframe_karim/helper.dart';
 import 'package:wireframe_karim/pages/daboard/darboard_page.dart';
@@ -18,7 +20,6 @@ class SplashPage extends StatefulWidget {
 
 class _SplashPageState extends State<SplashPage> {
   late PageController _pageController;
-  late Timer _timer;
   @override
   void initState() {
     _pageController = PageController();
@@ -28,7 +29,6 @@ class _SplashPageState extends State<SplashPage> {
   @override
   void dispose() {
     _pageController.dispose();
-    _timer.cancel();
     super.dispose();
   }
 

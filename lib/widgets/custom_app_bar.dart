@@ -23,17 +23,16 @@ class CustomAppBar extends StatelessWidget {
                 InkWell(
                     onTap: onTap,
                     child: onTap != null
-                        ? SvgPicture.asset(
-                            'assets/icons/ic_back.svg',
-                            height: 18,
-                            width: 20,
-                            fit: BoxFit.contain,
+                        ? Padding(
+                            padding: const EdgeInsets.only(right: 18),
+                            child: SvgPicture.asset(
+                              'assets/icons/ic_back.svg',
+                              height: 18,
+                              width: 20,
+                              fit: BoxFit.contain,
+                            ),
                           )
-                        : const SizedBox(
-                            width: 20,
-                            height: 18,
-                          )),
-                const SizedBox(width: 16),
+                        : const SizedBox()),
                 Text(
                   title,
                   style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w400),

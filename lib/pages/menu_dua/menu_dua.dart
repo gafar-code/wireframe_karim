@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wireframe_karim/configurator.dart';
 import 'package:wireframe_karim/helper.dart';
 import 'package:wireframe_karim/pages/menu_dua_isi/menu_dua_isi.dart';
 import 'package:wireframe_karim/widgets/custom_app_bar.dart';
@@ -22,16 +23,19 @@ class _MenuDuaPageState extends State<MenuDuaPage> {
         children: [
           const CustomAppBar(title: 'Menu dua'),
           Expanded(
-            child: ListView(
-              padding: const EdgeInsets.only(bottom: 120),
-              children: const [
-                MenuDuaHeader(),
-                Divider(
-                  height: 0,
-                  thickness: 1.5,
-                ),
-                MenuDuaContent()
-              ],
+            child: ScrollConfiguration(
+              behavior: ScrollWithoutEffect(),
+              child: ListView(
+                padding: const EdgeInsets.only(bottom: 120),
+                children: const [
+                  MenuDuaHeader(),
+                  Divider(
+                    height: 0,
+                    thickness: 1.5,
+                  ),
+                  MenuDuaContent()
+                ],
+              ),
             ),
           )
         ],

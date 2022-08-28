@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wireframe_karim/configurator.dart';
 import 'package:wireframe_karim/theme.dart';
 
 import '../../helper.dart';
@@ -28,26 +29,29 @@ class _MenuDuaIsiState extends State<MenuDuaIsi> {
         children: [
           CustomAppBar(title: '', onTap: () => back(context)),
           Expanded(
-              child: ListView(
-            padding: const EdgeInsets.symmetric(horizontal: 24),
-            children: [
-              const Padding(
-                padding: EdgeInsets.fromLTRB(0, 18, 0, 8),
-                child: Text(
-                  'Judul Materi',
-                  style: TextStyle(fontWeight: FontWeight.bold),
+              child: ScrollConfiguration(
+            behavior: ScrollWithoutEffect(),
+            child: ListView(
+              padding: const EdgeInsets.symmetric(horizontal: 24),
+              children: [
+                const Padding(
+                  padding: EdgeInsets.fromLTRB(0, 18, 0, 8),
+                  child: Text(
+                    'Judul Materi',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
                 ),
-              ),
-              const Text('Lorem ipsum deskripsi'),
-              const SizedBox(height: 18),
-              Image.asset(
-                'assets/images/post.png',
-                height: 190,
-                fit: BoxFit.cover,
-              ),
-              ...List.generate(contents.length, (index) => _buildContent(contents[index])),
-              const MenuDuaFooter(),
-            ],
+                const Text('Lorem ipsum deskripsi'),
+                const SizedBox(height: 18),
+                Image.asset(
+                  'assets/images/post.png',
+                  height: 190,
+                  fit: BoxFit.cover,
+                ),
+                ...List.generate(contents.length, (index) => _buildContent(contents[index])),
+                const MenuDuaFooter(),
+              ],
+            ),
           )),
         ],
       )),

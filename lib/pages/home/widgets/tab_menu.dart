@@ -1,21 +1,17 @@
 part of '../home_page.dart';
 
 class HomeTabMenu extends StatelessWidget {
-  final List<String> menus;
   final Function(int) onTap;
-  const HomeTabMenu({
-    Key? key,
-    required this.menus,
-    required this.onTap,
-  }) : super(key: key);
+  const HomeTabMenu({Key? key, required this.onTap}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return Container(
+      color: Colors.white,
       padding: const EdgeInsets.symmetric(horizontal: 24),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: List.generate(menus.length, _buildItem),
+        children: List.generate(tabMenu.length, _buildItem),
       ),
     );
   }
@@ -26,13 +22,17 @@ class HomeTabMenu extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          Image.asset(
-            'assets/images/menu_tab${index + 1}.png',
-            height: 60,
-            width: 60,
+          ClipRRect(
+            borderRadius: tabMenu[index].borderRadius,
+            child: Image.asset(
+              tabMenu[index].image,
+              height: 60,
+              width: 60,
+              fit: BoxFit.cover,
+            ),
           ),
           const SizedBox(height: 4),
-          Text(menus[index]),
+          Text(tabMenu[index].title, style: tabMenu[index].titleStyle),
         ],
       ),
     );

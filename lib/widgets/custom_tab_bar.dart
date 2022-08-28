@@ -9,24 +9,33 @@ class CustomTabBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: List.generate(
-          items.length,
-          (index) => InkWell(
-                onTap: () => onTap(index),
-                child: SizedBox(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 18),
-                    child: Text(
-                      items[index],
-                      style: TextStyle(
-                        color: (selectedIndex == index) ? primaryColor : Colors.black,
-                      ),
+    return SizedBox(
+      height: 60,
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        reverse: true,
+        itemCount: items.length,
+        itemBuilder: (_, index) {
+          return InkWell(
+            onTap: () => onTap(index),
+            child: Center(
+              child: Container(
+                width: 120,
+                margin: const EdgeInsets.only(left: 24),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 18),
+                  child: Text(
+                    items[index],
+                    style: TextStyle(
+                      color: (selectedIndex == index) ? primaryColor : Colors.black,
                     ),
                   ),
                 ),
-              )),
+              ),
+            ),
+          );
+        },
+      ),
     );
   }
 }

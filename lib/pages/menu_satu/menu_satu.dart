@@ -3,6 +3,8 @@ import 'package:wireframe_karim/widgets/custom_app_bar.dart';
 import 'package:wireframe_karim/widgets/custom_materi_screen.dart';
 import 'package:wireframe_karim/widgets/custom_tab_bar.dart';
 
+import '../../data/menusatu.dart';
+
 class MenuSatuPage extends StatefulWidget {
   const MenuSatuPage({Key? key}) : super(key: key);
 
@@ -13,30 +15,20 @@ class MenuSatuPage extends StatefulWidget {
 class _MenuSatuPageState extends State<MenuSatuPage> {
   late PageController _pageController;
 
-  final List<String> tabBar = ['Materi Satu', 'Materi Dua', 'Materi tiga'];
-  final List<String> contents = [
-    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since",
-    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since",
-    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since",
-    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since",
+  final List<String> _tabBar = [
+    'Materi Satu',
+    'Materi Dua',
+    'Materi tiga',
+    'Materi empat',
+    'Materi lima',
   ];
-  final List<String> contents2 = [
-    "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout",
-    "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout",
-    "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout",
-    "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout",
-  ];
-  final List<String> contents3 = [
-    "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour,",
-    "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour,",
-    "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour,",
-    "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour,",
-  ];
+
   int selectedIndex = 0;
 
   @override
   void initState() {
     _pageController = PageController();
+    _tabBar.reversed;
     super.initState();
   }
 
@@ -48,7 +40,7 @@ class _MenuSatuPageState extends State<MenuSatuPage> {
         children: [
           const CustomAppBar(title: 'Menu Satu'),
           CustomTabBar(
-            items: tabBar,
+            items: _tabBar,
             selectedIndex: selectedIndex,
             onTap: (index) {
               _pageController.jumpToPage(index);
@@ -57,11 +49,14 @@ class _MenuSatuPageState extends State<MenuSatuPage> {
           Expanded(
             child: PageView(
               controller: _pageController,
+              reverse: true,
               onPageChanged: (index) => setState(() => selectedIndex = index),
               children: [
-                CustomMateriScreen(contents: contents),
-                CustomMateriScreen(contents: contents2),
-                CustomMateriScreen(contents: contents3),
+                CustomMateriScreen(contents: menuSatuContentMateri1),
+                CustomMateriScreen(contents: menuSatuContentMateri2),
+                CustomMateriScreen(contents: menuSatuContentMateri3),
+                CustomMateriScreen(contents: menuSatuContentMateri1),
+                CustomMateriScreen(contents: menuSatuContentMateri2),
               ],
             ),
           )
